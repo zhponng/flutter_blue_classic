@@ -30,10 +30,10 @@ class FlutterBlueClassic {
   Future<List<BluetoothDevice>?> get bondedDevices => _instance.bondedDevices();
 
   /// This will attempt to start scanning for Bluetooth devices.
-  void startScan() => _instance.startScan(usesFineLocation);
+  Future<bool> startScan() => _instance.startScan(usesFineLocation);
 
   /// This will attempt to stop scanning for Bluetooth devices.
-  void stopScan() => _instance.stopScan();
+  Future<bool> stopScan() => _instance.stopScan();
 
   /// Returns an event stream about whether the device is currently scanning for Bluetooth devices
   Stream<bool> get isScanning => _instance.isScanning();

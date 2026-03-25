@@ -304,6 +304,8 @@ class FlutterBlueClassicPlugin : FlutterPlugin, MethodCallHandler, ActivityAware
         permissionManager.ensurePermissions(permissions.toTypedArray()) { success: Boolean, deniedPermissions: List<String>? ->
             run {
                 if (success) {
+                    // Cancel any lingering discovery (e.g. system-level discovery surviving app kill)
+                    bluetoothAdapter?.cancelDiscovery()
                     val discoveryStartState = bluetoothAdapter?.startDiscovery()
                     result.success(discoveryStartState)
                 } else {

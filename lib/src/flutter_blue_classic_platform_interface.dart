@@ -75,12 +75,12 @@ abstract class FlutterBlueClassicPlatform extends PlatformInterface {
   }
 
   /// Starts scanning for bluetooth devices
-  void startScan(bool usesFineLocation) {
+  Future<bool> startScan(bool usesFineLocation) {
     throw UnimplementedError('startScan() has not been implemented.');
   }
 
   /// Stops scanning for bluetooth devices
-  void stopScan() {
+  Future<bool> stopScan() {
     throw UnimplementedError('stopScan() has not been implemented.');
   }
 

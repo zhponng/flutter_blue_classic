@@ -86,14 +86,17 @@ class MethodChannelFlutterBlueClassic extends FlutterBlueClassicPlatform {
   }
 
   @override
-  void startScan(bool usesFineLocation) {
-    methodChannel
-        .invokeMethod("startScan", {"usesFineLocation": usesFineLocation});
+  Future<bool> startScan(bool usesFineLocation) async {
+    // Cancel any lingering discovery (e.g. system-level discovery surviving app kill)
+    await methodChannel.invokeMethod("stopScan");
+    return await methodChannel.invokeMethod<bool>(
+            "startScan", {"usesFineLocation": usesFineLocation}) ??
+        false;
   }
 
   @override
-  void stopScan() {
-    methodChannel.invokeMethod("stopScan");
+  Future<bool> stopScan() async {
+    return await methodChannel.invokeMethod<bool>("stopScan") ?? false;
   }
 
   @override
